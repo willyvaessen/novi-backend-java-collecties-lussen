@@ -5,22 +5,36 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        // Hier mag je je code schrijven voor de hoofd-opdracht
-        //  2.  Maak in je main methode een Integer array genaamd numeric die je vult met de nummers 1,2,3,4,5,6,7,8,9,0.
         Integer [] numeric = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-
-        //  3.  Maak in je main methode een String array genaamd alphabetic die je vult met de
-        //  String varianten van de nummers uit stap 1, dus: "een", "twee", ... etc ..., "negen", "nul".
         String [] alphabetic = {"een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", "nul"};
 
-
-        //  4.  Maak een nieuwe class aan en noem deze Translator (zie Class Translator)
-        //  9.  De constructor is klaar. Nu ga je deze aanroepen met de juiste argumenten in de main methode
-        //      van de Main class, oftewel: maak in main een nieuw object aan van het type Translator.
         Translator translator = new Translator(alphabetic, numeric);
 
+        boolean play = true;
+        String ongeldig = "Ongeldige invoer";
+        Scanner scanner = new Scanner(System.in);
 
+        while (play) {
+            System.out.println("Type 'x' om te stoppen \n Type 'v' om te vertalen");
+            String input = scanner.nextLine();
+            if (Objects.equals(input, "x")) {
+                play = false;
+            } else if (Objects.equals(input, "v")) {
+                System.out.println("Typ een cijfer van 0 t/m 9");
+                Integer number = scanner.nextInt();
+                scanner.nextLine();
+                if (number <10 && number >=0) {
+                    String result = translator.translate(number);
+                    System.out.println("De vertaling van " + number + " is " + result);
+                } else {
+                    System.out.println(ongeldig);
+                }
+            } else {
+                System.out.println(ongeldig);
+            }
 
+        }
+        //  Bonusopdracht
         /* deze regel mag je weg halen voor de bonus opdracht. Onderstaande code is voor de bonus opdracht.
         HashSet<Integer> secretnumber = randomnumbergenerator();
         String stringnumber =  setToStringConverter(secretnumber);
